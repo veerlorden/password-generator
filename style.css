@@ -50,8 +50,10 @@ body {
   list-style: none;
 }
 
-.pw-options {
+.pw-option {
   margin-bottom: .5rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
