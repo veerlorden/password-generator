@@ -6,42 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
   <title>Password Generator</title>
 </head>
 
 <body>
   <div id="app" class="app">
     <div class="pw-display" id="pw-display">
-      <div class="pw-output" id="pw-output"></div>
+      <div id="pw-output"></div>
       <div class="pw-icon">
-        <i class="fas fa-clone fa-sm" id="clone-btn"></i>
+        <i class="fas fa-clone fa-sm" id="button-clone"></i>
       </div>
     </div>
 
     <ul class="pw-body">
       <li class="pw-option">
         <label for="len">Password Length (6-20)</label>
-        <input type="number" value="10" min="6" max="20" id="len">
+
+        <div class="number-block">
+          <button class="button  button-num  button-minus" type="button" id="button-minus">-</button>
+          <input class="number" type="number" value="10" min="6" max="20" id="len">
+          <button class="button  button-num  button-plus" type="button" id="button-plus">+</button>
+        </div>
+
       </li>
       <li class="pw-option">
         <label for="upper">Contain Uppercase Letters</label>
-        <input type="checkbox" checked id="upper">
+        <input class="checkbox" type="checkbox" checked id="upper">
       </li>
       <li class="pw-option">
         <label for="lower">Contain Lowercase Letters</label>
-        <input type="checkbox" checked id="lower">
+        <input class="checkbox" type="checkbox" checked id="lower">
       </li>
       <li class="pw-option">
         <label for="number">Contain Numbers</label>
-        <input type="checkbox" checked id="number">
+        <input class="checkbox" type="checkbox" checked id="number">
       </li>
       <li class="pw-option">
         <label for="symbol">Contain Symbols</label>
-        <input type="checkbox" checked id="symbol">
+        <input class="checkbox" type="checkbox" checked id="symbol">
       </li>
     </ul>
 
-    <button id="button" class="button">Generate Password</button>
+    <button id="button-gen" class="button  button-gen">Generate Password</button>
   </div>
 
   <script src="index.js"></script>

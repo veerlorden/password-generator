@@ -1,7 +1,7 @@
-const uppercaseLtrs = 'QWERTYUIOPASDFGHJKLZXCVBNM'
-const lowercaseLtrs = 'qwertyuiopasdfghjklzxcvbnm'
-const numbers = '1234567890'
-const symbols = '!@#$%^&*()'
+const UPPERCASE = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+const LOWERCASE = 'qwertyuiopasdfghjklzxcvbnm'
+const NUMBERS = '1234567890'
+const SYMBOLS = '!@#$%^&*()'
 
 const $output = document.getElementById('pw-output')
 const $len = document.getElementById('len')
@@ -9,12 +9,25 @@ const $upper = document.getElementById('upper')
 const $lower = document.getElementById('lower')
 const $number = document.getElementById('number')
 const $symbol = document.getElementById('symbol')
-const $button = document.getElementById('button')
-const $clone = document.getElementById('clone-btn')
+const $buttonMinus = document.getElementById('button-minus')
+const $buttonPlus = document.getElementById('button-plus')
+const $button = document.getElementById('button-gen')
+const $clone = document.getElementById('button-clone')
 
 $button.addEventListener('click', generatePassword)
 $clone.addEventListener('click', copyToClipboard)
 window.addEventListener('load', generatePassword)
+$buttonMinus.addEventListener('click', stepDown)
+$buttonPlus.addEventListener('click', stepUp)
+
+function hasChar(password, string) {
+  for (let i = 0; i < string.length; i++) {
+    if (password.includes(string[i])) {
+      return true
+    }
+  }
+  return false
+}
 
 function generatePassword() {
   const len = $len.value
@@ -27,6 +40,15 @@ function generatePassword() {
   let password = ''
   for (let i = 0; i < len; i++) {
     password += generateX()
+  }
+
+  if (
+      $upper.checked && !hasChar(password, UPPERCASE)
+      || $lower.checked && !hasChar(password, LOWERCASE)
+      || $number.checked && !hasChar(password, NUMBERS)
+      || $symbol.checked && !hasChar(password, SYMBOLS)
+  ) {
+    generatePassword()
   }
 
   $output.innerHTML = password
@@ -52,19 +74,19 @@ function generateX() {
 }
 
 function getUpper() {
-  return uppercaseLtrs[Math.floor(Math.random() * uppercaseLtrs.length)]
+  return UPPERCASE[Math.floor(Math.random() * UPPERCASE.length)]
 }
 
 function getLower() {
-  return lowercaseLtrs[Math.floor(Math.random() * lowercaseLtrs.length)]
+  return LOWERCASE[Math.floor(Math.random() * LOWERCASE.length)]
 }
 
 function getNumber() {
-  return numbers[Math.floor(Math.random() * numbers.length)]
+  return NUMBERS[Math.floor(Math.random() * NUMBERS.length)]
 }
 
 function getSymbol() {
-  return symbols[Math.floor(Math.random() * symbols.length)]
+  return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]
 }
 
 function copyToClipboard() {
@@ -79,4 +101,12 @@ function copyToClipboard() {
   textarea.setSelectionRange(0, 99999); /*For mobile devices*/
   document.execCommand("copy")
   textarea.remove()
+}
+
+function stepUp() {
+  this.parentNode.querySelector('#len').stepUp()
+}
+
+function stepDown() {
+  this.parentNode.querySelector('#len').stepDown()
 }
