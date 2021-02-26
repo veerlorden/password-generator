@@ -51,6 +51,10 @@ body {
   cursor: pointer;
 }
 
+.fa-clone:hover {
+  color: #d4d4d4;
+}
+
 .fa-clone:active {
   color: #b7b7b7;
 }
@@ -65,6 +69,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.pw-option label {
+  user-select: none;
+  cursor: pointer;
 }
 
 .number-block {
@@ -95,7 +104,7 @@ body {
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
-  outline: 0;
+  outline: none;
   border-radius: 3px;
 }
 
